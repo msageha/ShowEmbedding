@@ -11,7 +11,7 @@ def create(path, dump_dir='runs', size=10000):
     # vec_path = "/Users/sango.m.ab/Desktop/research2/SentenceClasification/.vector_cache/wiki.ja.vec"
     # vec_path = '/Users/sango.m.ab/Desktop/research/data/entity_vector/entity_vector.model.txt'
     writer = SummaryWriter(log_dir=dump_dir)
-    model = gensim.models.KeyedVectors.load_word2vec_format(path)
+    model = gensim.models.KeyedVectors.load(path)
     weights = model.vectors.copy()
     labels = model.index2word.copy()
 
