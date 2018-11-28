@@ -10,7 +10,8 @@ def create(path, dump_dir=None, size=10000):
     # tensorboard MAX 100,000 vectors https://github.com/tensorflow/tensorboard/issues/773
     # vec_path = "/Users/sango.m.ab/Desktop/research2/SentenceClasification/.vector_cache/wiki.ja.vec"
     # vec_path = '/Users/sango.m.ab/Desktop/research/data/entity_vector/entity_vector.model.txt'
-    writer = SummaryWriter(log_dir=dump_dir)
+    comment = path.split('/')[-1]
+    writer = SummaryWriter(log_dir=dump_dir, comment=comment)
     model = gensim.models.KeyedVectors.load(path)
     weights = model.wv.vectors.copy()
     labels = model.wv.index2word.copy()
@@ -19,6 +20,10 @@ def create(path, dump_dir=None, size=10000):
     # 学習済みfastTextには，46と9027番目に含まれている．
     weights = weights[:size]
     labels = labels[:size]
+
+    for index, label in enumerate(labels):
+        if '\u3000' == 'label':
+            labels[index] = '空白'
 
     writer.add_embedding(torch.FloatTensor(weights), metadata=labels)
 
