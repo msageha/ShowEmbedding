@@ -12,8 +12,8 @@ def create(path, dump_dir='runs', size=10000):
     # vec_path = '/Users/sango.m.ab/Desktop/research/data/entity_vector/entity_vector.model.txt'
     writer = SummaryWriter(log_dir=dump_dir)
     model = gensim.models.KeyedVectors.load(path)
-    weights = model.vectors.copy()
-    labels = model.index2word.copy()
+    weights = model.wv.vectors.copy()
+    labels = model.wv.index2word.copy()
 
     # tensorboard '\u3000'(全角スペース)はだめ.\xa0もだめなため注意．
     # 学習済みfastTextには，46と9027番目に含まれている．
