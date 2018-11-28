@@ -6,7 +6,7 @@ import torch
 from tensorboardX import SummaryWriter
 
 
-def create(path, dump_dir='runs', size=10000):
+def create(path, dump_dir=None, size=10000):
     # tensorboard MAX 100,000 vectors https://github.com/tensorflow/tensorboard/issues/773
     # vec_path = "/Users/sango.m.ab/Desktop/research2/SentenceClasification/.vector_cache/wiki.ja.vec"
     # vec_path = '/Users/sango.m.ab/Desktop/research/data/entity_vector/entity_vector.model.txt'
@@ -25,8 +25,8 @@ def create(path, dump_dir='runs', size=10000):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='main function parser')
     parser.add_argument('--path', type=str, help='load file path', required=True)
-    parser.add_argument('--dump_dir', type=str, help='dump directory')
+    parser.add_argument('--dump_dir', type=str, help='dump directory', default=None)
     parser.add_argument('--size', type=int, default=10000, help='embedding vector size')
     args = parser.parse_args()
 
-    create(args.path, size=args.size)
+    create(args.path, size=args.size, dump_dir=args.dump_dir)
