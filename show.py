@@ -28,3 +28,5 @@ if __name__ == '__main__':
     parser.add_argument('--dump_dir', type=str, help='dump directory')
     parser.add_argument('--size', type=int, default=10000, help='embedding vector size')
     args = parser.parse_args()
+
+    create(args.path, size=args.size)
