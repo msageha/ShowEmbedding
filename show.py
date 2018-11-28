@@ -15,14 +15,14 @@ def create(path, dump_dir=None, size=10000):
     model = gensim.models.KeyedVectors.load(path)
     weights = model.wv.vectors.copy()
     labels = model.wv.index2word.copy()
-
+    size = 1000
     # tensorboard '\u3000'(全角スペース)はだめ.\xa0もだめなため注意．
     # 学習済みfastTextには，46と9027番目に含まれている．
     weights = weights[:size]
     labels = labels[:size]
 
     for index, label in enumerate(labels):
-        if '\u3000' == 'label':
+        if '\u3000' == label:
             labels[index] = '空白'
 
     writer.add_embedding(torch.FloatTensor(weights), metadata=labels)
