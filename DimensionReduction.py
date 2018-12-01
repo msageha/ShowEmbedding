@@ -18,7 +18,7 @@ def load(path, size=1000):
     return embeddings, labels
 
 def show(weights, labels, path):
-    for weight, word in zip(weights, labels):
+    for weight, label in zip(weights, labels):
         plt.annotate(label, (weight[0], weight[1]))
     plt.scatter(weights[:, 0], weights[:, 1], alpha=0.5)
     plt.savefig(path)
