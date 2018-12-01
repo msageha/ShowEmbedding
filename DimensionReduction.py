@@ -46,7 +46,7 @@ def main():
     # t-SNE
     tsne_model = TSNE(n_components=2)
     weights = tsne_model.fit_transform(embeddings)
-    show(weights, labels, f'{output}.svg')
+    show(weights, labels, f'graph/{output}.svg')
 
 if __name__=='__main__':
     main()
