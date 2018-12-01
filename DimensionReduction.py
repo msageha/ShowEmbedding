@@ -38,14 +38,15 @@ def main():
 
     embeddings, labels = load(args.path, args.size)
 
-    # UMAP
-    weights = umap.UMAP().fit_transform(embeddings)
-    show(weights, labels, 'umap.svg')
+    output = args.path.split('/')[-1]
+    # # UMAP
+    # weights = umap.UMAP().fit_transform(embeddings)
+    # show(weights, labels, 'umap.svg')
 
     # t-SNE
     tsne_model = TSNE(n_components=2)
     weights = tsne_model.fit_transform(embeddings)
-    show(weights, labels, 'tsne.svg')
+    show(weights, labels, f'{output}.svg')
 
 if __name__=='__main__':
     main()
