@@ -19,9 +19,13 @@ def load(path, size=1000):
 
 def show(weights, labels, path):
     fig = plt.figure(figsize=(10,10),dpi=200)
+    ax=plt.subplot()
     for weight, label in zip(weights, labels):
-        plt.annotate(label, (weight[0], weight[1]), fontsize=5)
-    plt.scatter(weights[:, 0], weights[:, 1], alpha=0.5, s=5)
+        ax.annotate(label, (weight[0], weight[1]), fontsize=5)
+    ax.scatter(weights[:, 0], weights[:, 1], alpha=0.5, s=5)
+    #範囲のセット
+    ax.set_xlim([-40, 40])
+    ax.set_ylim([-40, 40])
     plt.savefig(path)
     plt.clf()
 
