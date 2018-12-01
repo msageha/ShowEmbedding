@@ -19,8 +19,8 @@ def load(path, size=1000):
 
 def show(weights, labels, path):
     for weight, label in zip(weights, labels):
-        plt.annotate(label, (weight[0], weight[1]))
-    plt.scatter(weights[:, 0], weights[:, 1], alpha=0.5)
+        plt.annotate(label, (weight[0], weight[1]), fontsize=5)
+    plt.scatter(weights[:, 0], weights[:, 1], alpha=0.5, markersize=5)
     plt.savefig(path)
     plt.clf()
 
