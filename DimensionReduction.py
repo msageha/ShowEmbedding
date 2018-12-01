@@ -18,6 +18,7 @@ def load(path, size=1000):
     return embeddings, labels
 
 def show(weights, labels, path):
+    fig = plt.figure(figsize=(10,10),dpi=200)
     for weight, label in zip(weights, labels):
         plt.annotate(label, (weight[0], weight[1]), fontsize=5)
     plt.scatter(weights[:, 0], weights[:, 1], alpha=0.5, s=5)
@@ -35,12 +36,12 @@ def main():
 
     # UMAP
     weights = umap.UMAP().fit_transform(embeddings)
-    show(weights, labels, 'umap.png')
+    show(weights, labels, 'umap.svg')
 
     # t-SNE
     tsne_model = TSNE(n_components=2)
     weights = tsne_model.fit_transform(embeddings)
-    show(weights, labels, 'tsne.png')
+    show(weights, labels, 'tsne.svg')
 
 if __name__=='__main__':
     main()
