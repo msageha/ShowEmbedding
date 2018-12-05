@@ -68,7 +68,7 @@ def main():
     for min_dist in min_dists:
         for n_neighbor in n_neighbors:
             start = time.time()
-            weights = umap.UMAP(min_dist=min_dist, n_neighbor=n_neighbor).fit_transform(embeddings)
+            weights = umap.UMAP(n_neighbors=n_neighbor, min_dist=min_dist).fit_transform(embeddings)
             finish = time.time()
             print(f'time: {finish-start} s', flush=True)
             os.makedirs(f'graph/{output}', exist_ok=True)
