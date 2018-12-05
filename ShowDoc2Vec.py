@@ -10,8 +10,10 @@ import matplotlib.cm as cm
 # from MulticoreTSNE import MulticoreTSNE as TSNE
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
+import time
 
 def load(path, domains=['OC', 'OW', 'OY', 'PB', 'PM', 'PN']):
+    print('start loading', flush=True)
     model = gensim.models.KeyedVectors.load(path)
     _labels = list(model.docvecs.doctags)
     labels = []
@@ -65,7 +67,10 @@ def main():
     min_dists = [0.001, 0.01, 0.1]
     for min_dist in min_dists:
         for n_neighbor in n_neighbors:
+            start = time.time()
             weights = umap.UMAP(min_dist=min_dist, n_neighbor=n_neighbor).fit_transform(embeddings)
+            finish = time.time()
+            print(f'time: {finish-start} s', flush=True)
             os.makedirs(f'graph/{output}', exist_ok=True)
             show(weights, labels, f'graph/{output}/min_dist:{min_dist}_neighbor:{n_neighbor.svg}')
 
