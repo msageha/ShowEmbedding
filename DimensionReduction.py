@@ -4,9 +4,9 @@ import umap
 from scipy.sparse.csgraph import connected_components #need for umap
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-from sklearn.manifold import TSNE
-import time
-
+# from sklearn.manifold import TSNE
+#データサイズによっては，sklearn のsingle core TSNEが遅いため，multi coreのものを使う．
+from MulticoreTSNE import MulticoreTSNE as TSNE
 
 def load(path, size=1000):
     model = gensim.models.KeyedVectors.load(path)
