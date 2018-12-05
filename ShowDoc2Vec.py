@@ -67,7 +67,7 @@ def main():
         for n_neighbor in n_neighbors:
             weights = umap.UMAP(min_dist=min_dist, n_neighbor=n_neighbor).fit_transform(embeddings)
             os.makedirs(f'graph/{output}', exist_ok=True)
-            show(weights, labels, f'graph/{output}/min_dist:{min_dist}_neighbor:{n_neighbor.svg')
+            show(weights, labels, f'graph/{output}/min_dist:{min_dist}_neighbor:{n_neighbor.svg}')
 
     # t-SNE
     # tsne_model = TSNE(n_components=2)
