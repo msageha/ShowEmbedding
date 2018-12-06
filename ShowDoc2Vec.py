@@ -63,21 +63,27 @@ def main():
 
     output = args.path.split('/')[-1]
     # # UMAP
-    n_neighbors = [15, 35, 55, 75]
-    min_dists = [0.001, 0.01, 0.1]
-    for min_dist in min_dists:
-        for n_neighbor in n_neighbors:
-            start = time.time()
-            weights = umap.UMAP(n_neighbors=n_neighbor, min_dist=min_dist).fit_transform(embeddings)
-            finish = time.time()
-            print(f'time: {finish-start} s', flush=True)
-            os.makedirs(f'graph/umap/{output}', exist_ok=True)
-            show(weights, labels, f'graph/umap/{output}/min_dist:{min_dist}_neighbor:{n_neighbor}.svg')
+    # n_neighbors = [15, 35, 55, 75]
+    # min_dists = [0.001, 0.01, 0.1]
+    # for min_dist in min_dists:
+    #     for n_neighbor in n_neighbors:
+    #         start = time.time()
+    #         weights = umap.UMAP(n_neighbors=n_neighbor, min_dist=min_dist).fit_transform(embeddings)
+    #         finish = time.time()
+    #         print(f'time: {finish-start} s', flush=True)
+    #         os.makedirs(f'graph/umap/{output}', exist_ok=True)
+    #         show(weights, labels, f'graph/umap/{output}/min_dist:{min_dist}_neighbor:{n_neighbor}.svg')
 
     # t-SNE
-    # tsne_model = TSNE(n_components=2)
-    # weights = tsne_model.fit_transform(embeddings)
-    # show(weights, labels, f'graph/{output}.svg')
+    perplexities = [10, 20, 30, 40, 50]
+    for perplexity in perplexities:
+        start = time.time()
+        tsne_model = TSNE(n_components=2, perplexity=perplexity, n_jobs=10)
+        weights = tsne_model.fit_transform(embeddings)
+        finish = time.time()
+        print(f'time: {finish-start} s', flush=True)
+        os.makedirs(f'graph/umap/{output}', exist_ok=True)
+        show(weights, labels, f'graph/tsne/{output}/perplexity:{perplexity}.svg')
 
 if __name__=='__main__':
     main()
