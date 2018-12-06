@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 # from sklearn.manifold import TSNE
 #データサイズによっては，sklearn のsingle core TSNEが遅いため，multi coreのものを使う．
-# from MulticoreTSNE import MulticoreTSNE as TSNE
+from MulticoreTSNE import MulticoreTSNE as TSNE
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import time
@@ -71,8 +71,8 @@ def main():
             weights = umap.UMAP(n_neighbors=n_neighbor, min_dist=min_dist).fit_transform(embeddings)
             finish = time.time()
             print(f'time: {finish-start} s', flush=True)
-            os.makedirs(f'graph/{output}', exist_ok=True)
-            show(weights, labels, f'graph/{output}/min_dist:{min_dist}_neighbor:{n_neighbor.svg}')
+            os.makedirs(f'graph/umap/{output}', exist_ok=True)
+            show(weights, labels, f'graph/umap/{output}/min_dist:{min_dist}_neighbor:{n_neighbor.svg}')
 
     # t-SNE
     # tsne_model = TSNE(n_components=2)
