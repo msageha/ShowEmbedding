@@ -72,7 +72,7 @@ def main():
             finish = time.time()
             print(f'time: {finish-start} s', flush=True)
             os.makedirs(f'graph/umap/{output}', exist_ok=True)
-            show(weights, labels, f'graph/umap/{output}/min_dist:{min_dist}_neighbor:{n_neighbor.svg}')
+            show(weights, labels, f'graph/umap/{output}/min_dist:{min_dist}_neighbor:{n_neighbor}.svg')
 
     # t-SNE
     # tsne_model = TSNE(n_components=2)
