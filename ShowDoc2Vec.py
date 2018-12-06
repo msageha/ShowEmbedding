@@ -83,7 +83,7 @@ def main():
         weights = tsne_model.fit_transform(embeddings)
         finish = time.time()
         print(f'time: {finish-start} s', flush=True)
-        os.makedirs(f'graph/umap/{output}', exist_ok=True)
+        os.makedirs(f'graph/tsne/{output}', exist_ok=True)
         show(weights, labels, f'graph/tsne/{output}/perplexity:{perplexity}.svg')
 
 if __name__=='__main__':
