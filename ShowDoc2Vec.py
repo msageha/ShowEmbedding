@@ -60,6 +60,7 @@ def main():
     args = parser.parse_args()
 
     embeddings, labels = load(args.path)
+    embeddings = np.array(embeddings)
 
     output = args.path.split('/')[-1]
     # # UMAP
