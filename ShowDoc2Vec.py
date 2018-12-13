@@ -64,8 +64,8 @@ def main():
 
     output = args.path.split('/')[-1]
     # # UMAP
-    n_neighbors = [15, 35, 55, 75]
-    min_dists = [0.001, 0.01, 0.1]
+    n_neighbors = [15] #, 35, 55, 75]
+    min_dists = [0.1] #0.001, 0.01, 0.1]
     for min_dist in min_dists:
         for n_neighbor in n_neighbors:
             start = time.time()
@@ -76,7 +76,7 @@ def main():
             show(weights, labels, f'graph/umap/{output}/min_dist:{min_dist}_neighbor:{n_neighbor}.svg')
 
     # t-SNE
-    perplexities = [10, 20, 30, 40, 50]
+    perplexities = [30] #10, 20, 30, 40, 50]
     for perplexity in perplexities:
         start = time.time()
         tsne_model = TSNE(n_components=2, perplexity=perplexity, n_jobs=10)
